@@ -2,6 +2,12 @@
 
 A Rails application template with the narralabs defaults. These defaults are optimized for deployment using Docker and in AWS ECS Fargate.
 
+## Usage
+
+```
+rails new blog -m https://raw.githubusercontent.com/westoque/braces/main/template.rb
+```
+
 ## General Gems
 
 - [Devise](https://github.com/heartcombo/devise) for authentication
