@@ -2,6 +2,13 @@
 
 A Rails application template with the narralabs defaults. These defaults are optimized for deployment using Docker and in AWS ECS Fargate.
 
+## Requirements
+
+In order to use the rails application template, you need to have:
+
+- At least ruby 2.7.4
+- At least rails 7.0.2.3
+
 ## Usage
 
 ```
