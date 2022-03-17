@@ -5,7 +5,7 @@ A Rails application template with the narralabs defaults. These defaults are opt
 ## Usage
 
 ```
-rails new blog -m https://raw.githubusercontent.com/westoque/braces/main/template.rb
+rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/template.rb
 ```
 
 ## General Gems
