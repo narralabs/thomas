@@ -18,8 +18,8 @@ rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/templa
 ## General Gems
 
 - [Devise](https://github.com/heartcombo/devise) for authentication
-- Bootstrap 5 for styling
 - Simple Form for easier forms
+- Bootstrap 5 for styling
 - Rollbar for error tracking
 - Skylight for performance monitoring
 - Delayed Job for processing background jobs
@@ -34,3 +34,7 @@ rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/templa
 - FactoryBot
 - Timecop
 - Shoulda Matchers
+
+## Security Gems
+
+- [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security vulnerability scanning.
