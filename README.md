@@ -18,6 +18,8 @@ rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/templa
 ## General Gems
 
 - [Devise](https://github.com/heartcombo/devise) for authentication
+- Haml for beautiful HTML markups
+- Bootstrap 5 for styling
 - Simple Form for easier forms
 - Bootstrap 5 for styling
 - Rollbar for error tracking
