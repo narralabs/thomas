@@ -22,6 +22,7 @@ rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/templa
 - Bootstrap 5 for styling
 - Simple Form for easier forms
 - Bootstrap 5 for styling
+- CarrierWave for uploads (images and other files)
 - Rollbar for error tracking
 - Skylight for performance monitoring
 - Delayed Job for processing background jobs
