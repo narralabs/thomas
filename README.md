@@ -17,6 +17,7 @@ rails new blog -m https://raw.githubusercontent.com/narralabs/braces/main/templa
 
 ## General Gems
 
+- [Awesome Print](https://github.com/awesome-print/awesome_print) for beautiful puts statements
 - [Devise](https://github.com/heartcombo/devise) for authentication
 - Haml for beautiful HTML markups
 - Bootstrap 5 for styling
