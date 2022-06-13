@@ -30,6 +30,7 @@ This will ensure that we do continuous deployment from the beginning of the appl
 - Bootstrap 5 for styling
 - CarrierWave for uploads (images and other files)
 - Rollbar for error tracking
+- [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - Skylight for performance monitoring
 - Delayed Job for processing background jobs
 - Rack Timeout to abort requests that are taking too long
