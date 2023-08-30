@@ -27,7 +27,6 @@ This will ensure that we do continuous deployment from the beginning of the appl
 - Haml for beautiful HTML markups
 - Bootstrap 5 for styling
 - Simple Form for easier forms
-- Bootstrap 5 for styling
 - CarrierWave for uploads (images and other files)
 - Rollbar for error tracking
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
