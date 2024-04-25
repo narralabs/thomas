@@ -55,5 +55,5 @@ To develop and contribute to the project:
 1. Clone the project
 2. Install dependencies: `bundle install`
 3. [ADD NEW GEMS OR CONFIG HERE]
-4. Run the makefile which creates the app: `make`
+4. Run the makefile which creates the app named "blog" in the current dir: `make`
 5. Check the output logs and inspect the app to see if the files and config are generated correctly
