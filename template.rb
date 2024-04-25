@@ -1,3 +1,4 @@
+gem "awesome_print"
 gem "devise"
 
 after_bundle do
