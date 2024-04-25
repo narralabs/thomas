@@ -1,4 +1,4 @@
-# Braces
+# Thomas
 
 A Rails application template with the narralabs defaults. These defaults are optimized for deployment using Docker and in AWS ECS Fargate.
 
