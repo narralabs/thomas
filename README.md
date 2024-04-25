@@ -24,7 +24,7 @@ This will ensure that we do continuous deployment from the beginning of the appl
 
 - [Awesome Print](https://github.com/awesome-print/awesome_print) for beautiful puts statements
 - [Devise](https://github.com/heartcombo/devise) for authentication
-- Haml for beautiful HTML markups
+- [Haml](https://github.com/haml/haml-rails) for beautiful HTML markups
 - Bootstrap 5 for styling
 - Simple Form for easier forms
 - CarrierWave for uploads (images and other files)
