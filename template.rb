@@ -4,6 +4,8 @@ gem "devise", comment: "Use Devise for authentication"
 gem "html2haml", comment: "Use HTML2HAML to convert erb to haml"
 gem "haml-rails", "~> 2.0", comment: "Use HAML for HTML templates"
 
+gem "sitemap_generator", comment: "Use sitemap generator to generate sitemaps"
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
