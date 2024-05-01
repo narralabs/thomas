@@ -26,7 +26,6 @@ This will ensure that we do continuous deployment from the beginning of the appl
 - [Devise](https://github.com/heartcombo/devise) for authentication
 - [Haml](https://github.com/haml/haml-rails) for beautiful HTML markups
 - Simple Form for easier forms
-- CarrierWave for uploads (images and other files)
 - Rollbar for error tracking
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - Skylight for performance monitoring
