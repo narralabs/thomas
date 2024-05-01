@@ -14,6 +14,8 @@ gem "high_voltage", comment: "Use High Voltage for static pages"
 
 gem "title", comment: "Use Title for dynamic page titles"
 
+gem "sidekiq", comment: "Use Sidekiq for background jobs"
+
 gem_group :development, :test do
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
@@ -44,6 +46,9 @@ after_bundle do
   end
 end
 STR
+
+  # Add sidekiq production config
+  gsub_file "config/environments/production.rb", /# config.active_job.queue_adapter = :resque/, "config.active_job.queue_adapter = :sidekiq"
 
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"
