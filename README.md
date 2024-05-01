@@ -11,7 +11,7 @@ In order to use the rails application template, you need to have:
 
 ## Usage
 
-Create a new rails using the following:
+Create a new rails app using the following:
 
 ```
 rails new blog -m https://raw.githubusercontent.com/narralabs/thomas/main/template.rb
