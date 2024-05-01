@@ -12,6 +12,8 @@ gem "rack-timeout", comment: "Use Rack Timeout to timeout requests"
 
 gem "high_voltage", comment: "Use High Voltage for static pages"
 
+gem "title", comment: "Use Title for dynamic page titles"
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
