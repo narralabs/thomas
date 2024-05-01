@@ -16,6 +16,7 @@ gem "title", comment: "Use Title for dynamic page titles"
 
 gem_group :development, :test do
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
+  gem 'factory_bot_rails', comment: "Use Factory Bot for fixtures"
 end
 
 after_bundle do
