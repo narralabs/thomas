@@ -16,6 +16,9 @@ gem "title", comment: "Use Title for dynamic page titles"
 
 gem "sidekiq", comment: "Use Sidekiq for background jobs"
 
+gem "rubocop", require: false, comment: "Use Rubocop for linting"
+gem "rubocop-rails", require: false, comment: "Use Rubocap Rails for enforcing ruby on rails conventions"
+
 gem_group :development, :test do
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
@@ -49,6 +52,17 @@ STR
 
   # Add sidekiq production config
   gsub_file "config/environments/production.rb", /# config.active_job.queue_adapter = :resque/, "config.active_job.queue_adapter = :sidekiq"
+
+  # Add rubocop config file
+  file ".rubocop.yml", <<-CODE
+require: rubocop-rails
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+CODE
 
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"

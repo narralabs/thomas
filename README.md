@@ -35,7 +35,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - [Sidekiq](https://github.com/sidekiq/sidekiq) for processing background jobs
 - [Rack Timeout](https://github.com/zombocom/rack-timeout) to abort requests that are taking too long
-- Rubocop for static code analysis
+- [Rubocop](https://github.com/rubocop/rubocop) for static code analysis
 - [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 - [Title](https://github.com/calebhearth/title) for storing titles in translations
 
