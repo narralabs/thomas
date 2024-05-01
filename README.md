@@ -11,6 +11,9 @@ In order to use the rails application template, you need to have:
 
 ## Usage
 
+> [!IMPORTANT]
+> It is recommended that you deploy immediately after creating an app using the template.  This will ensure that we do continuous deployment from the beginning of the application.
+
 Create a new rails app using the following:
 
 ```
@@ -22,9 +25,6 @@ Create a new rails app using the template with Tailwind CSS:
 ```
 rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/thomas/main/template.rb
 ```
-
-It is recommended that you deploy immediately after creating an app using the template.
-This will ensure that we do continuous deployment from the beginning of the application.
 
 ### General Gems
 
@@ -49,6 +49,13 @@ This will ensure that we do continuous deployment from the beginning of the appl
 ### Security Gems
 
 - [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security vulnerability scanning.
+
+## Post Creation
+
+After creating the app. It is highly recommended to:
+
+1. Add error monitoring. We suggest rollbar.
+2. Add performance monitoring. We suggest skylight.
 
 ## Developing and Contributing
 
