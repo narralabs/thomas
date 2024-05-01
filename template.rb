@@ -10,6 +10,8 @@ gem "simple_form", comment: "Use Simple Form for forms"
 
 gem "rack-timeout", comment: "Use Rack Timeout to timeout requests"
 
+gem "high_voltage", comment: "Use High Voltage for static pages"
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
