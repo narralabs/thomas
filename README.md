@@ -41,7 +41,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 
 ### Testing Gems
 
-- RSpec
+- [RSpec](https://github.com/rspec/rspec-rails) for BDD testing
 - FactoryBot
 - Timecop
 - Shoulda Matchers
