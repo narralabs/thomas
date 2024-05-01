@@ -29,6 +29,17 @@ gem_group :test do
   gem 'shoulda-matchers', '~> 6.0', comment: "Use Shoulda Matchers for test matchers"
 end
 
+route "root to: 'welcome#index'"
+create_file "app/controllers/welcome_controller.rb", <<-CODE
+class WelcomeController < ApplicationController
+  def index
+  end
+end
+CODE
+create_file "app/views/welcome/index.html.haml", <<-CODE
+%h1 Hello World from Thomas
+CODE
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
