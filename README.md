@@ -17,6 +17,12 @@ Create a new rails app using the following:
 rails new blog -m https://raw.githubusercontent.com/narralabs/thomas/main/template.rb
 ```
 
+Create a new rails app using the template with Tailwind CSS:
+
+```
+rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/thomas/main/template.rb
+```
+
 It is recommended that you deploy immediately after creating an app using the template.
 This will ensure that we do continuous deployment from the beginning of the application.
 
