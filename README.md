@@ -34,7 +34,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [Simple Form](https://github.com/heartcombo/simple_form) for easier forms
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - Delayed Job for processing background jobs
-- Rack Timeout to abort requests that are taking too long
+- [Rack Timeout](https://github.com/zombocom/rack-timeout) to abort requests that are taking too long
 - Rubocop for static code analysis
 - High Voltage for static pages
 - Title for storing titles in translations
