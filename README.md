@@ -33,7 +33,6 @@ This will ensure that we do continuous deployment from the beginning of the appl
 - [Haml](https://github.com/haml/haml-rails) for beautiful HTML markups
 - [Simple Form](https://github.com/heartcombo/simple_form) for easier forms
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
-- Skylight for performance monitoring
 - Delayed Job for processing background jobs
 - Rack Timeout to abort requests that are taking too long
 - Rubocop for static code analysis
