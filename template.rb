@@ -20,6 +20,10 @@ gem_group :development, :test do
   gem "timecop", comment: "Use Timecop for time testing"
 end
 
+gem_group :test do
+  gem 'shoulda-matchers', '~> 6.0', comment: "Use Shoulda Matchers for test matchers"
+end
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
@@ -30,6 +34,16 @@ after_bundle do
   # Run the rspec generator and remove the test directory
   run "rails generate rspec:install"
   run "rm -rf test"
+
+  # Add shoulda-matchers config to the bottom of spec/rails_helper.rb
+  append_to_file "spec/rails_helper.rb", <<-STR
+\nShoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+STR
 
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"
