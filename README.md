@@ -43,7 +43,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 
 - [RSpec](https://github.com/rspec/rspec-rails) for BDD testing
 - [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) for fixtures
-- Timecop
+- [Timecop](https://github.com/travisjeffery/timecop) for time testing
 - Shoulda Matchers
 
 ### Security Gems
