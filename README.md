@@ -56,6 +56,7 @@ After creating the app. It is highly recommended to:
 
 1. Add error monitoring. We suggest rollbar.
 2. Add performance monitoring. We suggest skylight.
+3. Run devise generator: `rails generate devise:install`. The devise gem is installed but we don't make assumptions on the auth structure.
 
 ## Developing and Contributing
 
