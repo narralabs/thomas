@@ -8,6 +8,8 @@ gem "sitemap_generator", comment: "Use sitemap generator to generate sitemaps"
 
 gem "simple_form", comment: "Use Simple Form for forms"
 
+gem "rack-timeout", comment: "Use Rack Timeout to timeout requests"
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
