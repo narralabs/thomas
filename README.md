@@ -137,6 +137,42 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
 6. Add custom domain
 7. Setup SSL
 8. You now have a full-fledged production app
+9. Add AWS S3 for storage and AWS Cloudfront for performance.
+    ```
+    1. Create an S3 bucket. We typically follow the naming structure #{DASHERIZED-DOMAIN}-assets-#{ENV}: narralabs-com-assets-production
+        - Turn off "Block all public access" under Permissions->Block public access (bucket settings)
+        - Enable ACL access by setting Object Ownership to "Bucket owner preferred" under Permisisons->Object Ownership
+        - Edit the ACL list
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                    "Action": "s3:ListBucket",
+                    "Principal": "*",
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::narralabs-com-assets-production"
+                    },
+                    {
+                    "Action": "s3:PutObject*",
+                    "Principal": "*",
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::narralabs-com-assets-production/*"
+                    }
+                ]
+            }
+    2. Create a CloudFront endpoint that uses the S3 bucket as origin.
+    3. Add the required ENV variables for asset_sync gem
+        heroku config:add AWS_ACCESS_KEY_ID=xxxx
+        heroku config:add AWS_SECRET_ACCESS_KEY=xxxx
+        heroku config:add FOG_DIRECTORY=xxxx
+        heroku config:add FOG_PROVIDER=AWS
+        heroku config:add FOG_ASSET_HOST=//my-cloudfront.net
+    4. Change config/production.rb asset_host
+        config.asset_host = "http://assets.example.com"
+        # to
+        config.asset_host = ENV['FOG_ASSET_HOST']
+    5. Redeploy and check that assets are being served by the CDN.
+    ```
 
 
 ## Developing and Contributing
