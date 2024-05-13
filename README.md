@@ -1,6 +1,11 @@
 # Thomas
 
-A Rails application template with the narralabs defaults. These defaults are optimized for deployment using Docker and in AWS ECS Fargate.
+A Rails application template with the narralabs defaults. These defaults are optimized for development efficiency. It already includes things like `haml`, `simple_form`, `rspec`, and `shoulda-matchers` to name a few. Also includes tools that you will need in production like `sitemap_generator`, `rack_timeout`, `high_voltage` and others.
+
+It is built to be deployable after initial app creation. You should already have a production app and deployment environment from day 0. The recommended deployment environment is through Heroku but a second option is by using AWS Copilot and ECS Fargate.
+
+> [!IMPORTANT]
+> It is recommended that you deploy immediately after creating an app using the template.  This will ensure that we do continuous deployment from the beginning of the application.
 
 ## Requirements
 
@@ -10,9 +15,6 @@ In order to use the rails application template, you need to have:
 - At least rails 7.0.2.3
 
 ## Usage
-
-> [!IMPORTANT]
-> It is recommended that you deploy immediately after creating an app using the template.  This will ensure that we do continuous deployment from the beginning of the application.
 
 Create a new rails app using the following:
 
