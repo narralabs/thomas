@@ -19,6 +19,9 @@ gem "sidekiq", comment: "Use Sidekiq for background jobs"
 gem "rubocop", require: false, comment: "Use Rubocop for linting"
 gem "rubocop-rails", require: false, comment: "Use Rubocap Rails for enforcing ruby on rails conventions"
 
+gem "asset_sync", comment: "To upload assets to S3 after precompiling assets"
+gem "fog-aws", comment: "To use AWS with asset_sync"
+
 gem_group :development, :test do
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
