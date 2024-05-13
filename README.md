@@ -142,7 +142,7 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
     1. Create an S3 bucket. We typically follow the naming structure #{DASHERIZED-DOMAIN}-assets-#{ENV}: narralabs-com-assets-production
         - Turn off "Block all public access" under Permissions->Block public access (bucket settings)
         - Enable ACL access by setting Object Ownership to "Bucket owner preferred" under Permisisons->Object Ownership
-        - Edit the ACL list
+        - Edit the Bucket policy
             {
                 "Version": "2012-10-17",
                 "Statement": [
@@ -160,13 +160,14 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
                     }
                 ]
             }
+        - Edit the ACL list and enable ACL
     2. Create a CloudFront endpoint that uses the S3 bucket as origin.
     3. Add the required ENV variables for asset_sync gem
         heroku config:add AWS_ACCESS_KEY_ID=xxxx
         heroku config:add AWS_SECRET_ACCESS_KEY=xxxx
-        heroku config:add FOG_DIRECTORY=xxxx
+        heroku config:add FOG_DIRECTORY=s3-bucket-name-here
         heroku config:add FOG_PROVIDER=AWS
-        heroku config:add FOG_ASSET_HOST=//my-cloudfront.net
+        heroku config:add FOG_ASSET_HOST=//my-cloudfront-endpoint.net
     4. Change config/production.rb asset_host
         config.asset_host = "http://assets.example.com"
         # to
