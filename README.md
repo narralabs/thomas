@@ -62,9 +62,9 @@ After creating the app. It is highly recommended to:
 
 ## Deployment
 
-#### Copilot (UNDER DEVELOPMENT)
+#### Copilot
 
-The preferred deployment setup for this template is [AWS Copilot](https://aws.github.io/copilot-cli/docs/getting-started/install/). To deploy using AWS Copilot:
+The preferred deployment setup for this template is with [AWS Copilot](https://aws.github.io/copilot-cli/docs/getting-started/install/). To deploy using AWS Copilot:
 
 1. Get your AWS Credentials and add to `~/.aws/credentials`
     ```
@@ -86,9 +86,7 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
     copilot env deploy --name production
     ```
 
-4. Create the RDS managed database. Add security group.
-
-5. Add the `SECRET_KEY_BASE` ENV variable:
+4. Add the `SECRET_KEY_BASE` ENV variable:
     ```
     # Generate the secret key
     $ openssl rand -hex 64
@@ -99,17 +97,17 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
     What is the value of secret SECRET_KEY_BASE in environment production? [? for help] SomeLongRandomString
     ```
 
-6. Add the `POSTGRES_URL` ENV variable. Create an RDS database. Pick Postgres under the free tier plan to start.
+5. Add the `DATABASE_URL` ENV variable. Create an RDS database. Pick Postgres under the free tier plan to start.
     ```
-    # Create a random db username and set aside.
+    # Create a random db username and set this aside.
     $ cat /dev/urandom | LC_ALL=C tr -dc 'a-z' | head -c 14
     RandomUsername
 
-    # Create a random db password and set aside.
+    # Create a random db password and set this aside.
     $ openssl rand -hex 64
     RandomPassword
 
-    # Create a random db name and set aside.
+    # Create a random db name and set this aside.
     $ cat /dev/urandom | LC_ALL=C tr -dc 'a-z' | head -c 14
     RandomDbName
 
@@ -117,16 +115,24 @@ The preferred deployment setup for this template is [AWS Copilot](https://aws.gi
     postgres://RandomUsername:RandomPassword@RDS_HOST/RandomDbName
 
     # Go to AWS Console RDS and create the database.
-    #     - Make sure to fill up the database name field or the database will not be created.
-    #     - Make sure to put the RDS database in the same subnet as the created AWS Copilot app.
+    #     - IMPORTANT! Make sure to fill up the database name field or the database will not be created.
+    #     - IMPORTANT! Make sure to put the RDS database in the same subnet as the created AWS Copilot app.
+    #     - IMPORTANT! Make sure to create a new security group and name it APP_NAME-db-sg-ENV. e.g. narralabs-db-sg-production
+    #     - IMPORTANT! Make sure to add allow the inbound port 5432 in the created RDS security group. Allow from the security group created in copilot env to the RDS security group.
 
     $ copilot secret init
     What would you like to name this secret? [? for help] DATABASE_URL
     What is the value of secret DATABASE_URL in environment production? [? for help] postgres://RandomUsername:RandomPassword@RDS_HOST/RandomDbName
     ```
-7. Change healthcheck path to `/up`
-8. Add S3 config.
-9. Add Cloudfront config.
+6. Deploy: `copilot deploy`. Watch the logs for a "Running" state and visit the URL if so. If not, inspect the task logs.
+7. Add the domain.
+    ```
+    Go to Route53
+    Add a A record targeting the ALB load balancer created.
+    ```
+8. Setup redirect from `www.myapp.com`->`myapp.com` or other way around.
+9. Add S3 config.
+10. Add Cloudfront config.
 
 
 #### Heroku
