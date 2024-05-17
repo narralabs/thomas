@@ -79,10 +79,10 @@ The preferred deployment setup for this template is with [AWS Copilot](https://a
     export AWS_PROFILE=myprofile
     ```
 
-3. Create the app using copilot. NOTE: You can leave the `--domain` option out but it's non-reversible.
+3. Create the app using copilot.
     ```
     copilot init
-    copilot env init --name production --import-vpc-id VPC_ID_HERE
+    copilot env init --name production
     copilot env deploy --name production
     ```
 
@@ -97,7 +97,7 @@ The preferred deployment setup for this template is with [AWS Copilot](https://a
     What is the value of secret SECRET_KEY_BASE in environment production? [? for help] SomeLongRandomString
     ```
 
-5. Add the `DATABASE_URL` ENV variable. Create an RDS database. Pick Postgres under the free tier plan to start.
+5. Add the `DATABASE_URL` ENV variable by creating an RDS database. Pick Postgres under the free tier plan to start.
     ```
     # Create a random db username and set this aside.
     $ cat /dev/urandom | LC_ALL=C tr -dc 'a-z' | head -c 14
@@ -125,14 +125,36 @@ The preferred deployment setup for this template is with [AWS Copilot](https://a
     What is the value of secret DATABASE_URL in environment production? [? for help] postgres://RandomUsername:RandomPassword@RDS_HOST/RandomDbName
     ```
 6. Deploy: `copilot deploy`. Watch the logs for a "Running" state and visit the URL if so. If not, inspect the task logs.
-7. Add the domain.
+7. Mount the domain `www.myapp.com`.
     ```
     Go to Route53
-    Add a A record targeting the ALB load balancer created.
+    Add a A record targeting the ALB load balancer created from the deploy.
     ```
-8. Setup redirect from `www.myapp.com`->`myapp.com` or other way around.
-9. Add S3 config.
-10. Add Cloudfront config.
+8. Setup SSL
+    ```
+    1. Go to ACM (AWS Certificate Manager)
+    2. Add 2 certificates for the domain(s):
+        myapp.com
+        www.myapp.com
+    3. Validate the certificate and make sure "Status" is "Issued"
+    ```
+9. Add SSL redirect setup for the ALB load balancer.
+    ```
+    1. Go to ELB
+    2. Find the ALB load balancer for the app
+    3. Add listener for HTTPS port 443 and forward request to TargetGroup
+    4. Remove listener for port 80
+    5. Add another listener for port 80 but redirect to port 443
+    ```
+10. Setup redirect from `myapp.com`->`www.myapp.com`.
+    ```
+    1. Create a an S3 Bucket that is used for static hosting. Name the bucket by domain: myapp.com
+    2. Create a Cloudfront distribution targeting the S3 Bucket above.
+    3. Add "Alternate domain name (CNAME) - optional" in the Cloudfront for myapp.com
+    4. Point the Cloudfront distribution in Route 53
+    ```
+11. Add S3 config.
+12. Add Cloudfront config.
 
 
 #### Heroku
