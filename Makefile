@@ -1,7 +1,7 @@
 all: clean newapp
 
 newapp:
-	rails new -m template.rb blog
+	rails new blog -m template.rb --css tailwind
 
 clean:
 	rm -rf blog
