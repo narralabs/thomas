@@ -47,6 +47,30 @@ after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
 
+  create_file "app/views/shared/_flash.html.haml", <<-CODE
+- flash.each do |name, msg|
+  - flash_class = case name.to_sym
+  - when :success
+    - "bg-green-100 border border-green-400 text-green-700"
+  - when :error, :alert
+    - "bg-red-100 border border-red-400 text-red-700"
+  - when :notice, :info
+    - "bg-blue-100 border border-blue-400 text-blue-700"
+  - when :warning
+    - "bg-yellow-100 border border-yellow-400 text-yellow-700"
+  - else
+    - "bg-gray-100 border border-gray-400 text-gray-700"
+  .flash-message{class: flash_class, role: "alert"}
+    .container.mx-auto.px-4.py-3.relative
+      %p.font-medium= msg
+      %button.absolute.top-0.bottom-0.right-0.px-4.py-3{"data-dismiss" => "alert", type: "button"}
+        %span.text-2xl &times;
+CODE
+
+  insert_into_file "app/views/layouts/application.html.haml", after: "  %body\n" do
+    "    = render 'shared/flash'\n"
+  end
+
   # Run the simple_form generator
   run "rails generate simple_form:install"
 
