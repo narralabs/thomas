@@ -81,6 +81,14 @@ CODE
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"
 
+  # Enable Gzip compression
+  insert_into_file "config/application.rb", after: "class Application < Rails::Application\n" do
+    <<-RUBY
+    # Enable Gzip compression for responses
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater\n
+    RUBY
+  end
+
   git add: "."
   git commit: %Q{ -m 'Initial commit' }
 end
