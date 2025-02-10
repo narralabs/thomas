@@ -104,9 +104,7 @@ STR
 
   # Add rack timeout logger configuration
   create_file "config/initializers/rack_timeout.rb", <<-CODE
-if Rails.env.development?
-  Rack::Timeout::Logger.disable
-end
+Rack::Timeout::Logger.disable
 CODE
 
   git add: "."
