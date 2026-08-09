@@ -1,5 +1,6 @@
 gem "awesome_print", comment: "Use Awesome Print for better printing"
 gem "devise", comment: "Use Devise for authentication"
+gem "mailkick", "~> 1.3.1", comment: "Provide email subscriptions and one-click unsubscribe"
 
 gem "html2haml", comment: "Use HTML2HAML to convert erb to haml"
 gem "haml-rails", "~> 2.0", comment: "Use HAML for HTML templates"
@@ -43,6 +44,22 @@ create_file "app/views/welcome/index.html.haml", <<-CODE
 %h1 Hello World from Thomas
 CODE
 
+create_file "compose.yml", <<~YAML
+  services:
+    mailcatcher:
+      image: sj26/mailcatcher:latest
+      ports:
+        - "1025:1025"
+        - "1080:1080"
+YAML
+
+environment <<~RUBY, env: "development"
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: "127.0.0.1", port: 1025 }
+  config.action_mailer.preview_path = Rails.root.join("spec/mailers/previews")
+RUBY
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
@@ -73,6 +90,33 @@ CODE
 
   # Run the simple_form generator
   run "rails generate simple_form:install"
+
+  run "rails generate mailkick:install"
+  create_file "config/initializers/mailkick.rb", <<~RUBY
+    # Add RFC 8058 one-click unsubscribe headers to Mailkick-enabled emails.
+    Mailkick.headers = true
+  RUBY
+
+  remove_file "app/views/layouts/mailer.html.erb"
+  remove_file "app/views/layouts/mailer.text.erb"
+  remove_file "app/views/layouts/mailer.html.haml"
+  remove_file "app/views/layouts/mailer.text.haml"
+  create_file "app/views/layouts/mailer.html.haml", <<~HAML
+    !!!
+    %html
+      %head
+        %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}
+      %body{style: "background:#f6f7f9;margin:0;padding:32px 16px;font-family:Arial,sans-serif;color:#17202a"}
+        %table{role: "presentation", width: "100%", cellspacing: "0", cellpadding: "0"}
+          %tr
+            %td{align: "center"}
+              %table{role: "presentation", width: "600", cellspacing: "0", cellpadding: "32", style: "max-width:600px;width:100%;background:#fff;border-radius:8px"}
+                %tr
+                  %td= yield
+  HAML
+  create_file "app/views/layouts/mailer.text.haml", <<~HAML
+    = yield
+  HAML
 
   # Run the rspec generator and remove the test directory
   run "rails generate rspec:install"

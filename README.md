@@ -36,6 +36,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [Simple Form](https://github.com/heartcombo/simple_form) for easier forms
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - [Sidekiq](https://github.com/sidekiq/sidekiq) for processing background jobs
+- [Mailkick](https://github.com/ankane/mailkick) for subscriptions and one-click email unsubscribe
 - [Rack Timeout](https://github.com/zombocom/rack-timeout) to abort requests that are taking too long
 - [Rubocop](https://github.com/rubocop/rubocop) for static code analysis
 - [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
@@ -215,3 +216,6 @@ To develop and contribute to the project:
 3. [ADD NEW GEMS OR CONFIG HERE]
 4. Run the makefile which creates the app named "blog" in the current dir: `make`
 5. Check the output logs and inspect the `blog` app to see if the files and config are generated correctly
+
+Generated applications include Mailcatcher for local email previews. Start it with
+`docker compose up mailcatcher`, then open `http://localhost:1080`.
