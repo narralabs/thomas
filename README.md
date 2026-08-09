@@ -12,7 +12,7 @@ It is built to be deployable after initial app creation. You should already have
 In order to use the rails application template, you need to have:
 
 - At least ruby 2.7.4
-- At least rails 7.0.2.3
+- At least Rails 7.0.10
 
 ## Usage
 
