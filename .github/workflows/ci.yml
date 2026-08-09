@@ -11,6 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ruby-version: "3.3.0"
+            rails-version: "~> 7.0.10"
+          - ruby-version: "4.0.0"
+            rails-version: "~> 8.1.0"
+
     services:
       mailcatcher:
         image: sj26/mailcatcher:latest
@@ -25,8 +34,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.0"
-          bundler-cache: true
+          ruby-version: "${{ matrix.ruby-version }}"
 
       - name: Configure Git identity
         run: |
@@ -34,7 +42,13 @@ jobs:
           git config --global user.email "ci@narralabs.com"
 
       - name: Install Rails generator
-        run: gem install rails --version "~> 7.0.10" --no-document
+        run: gem install rails --version "${{ matrix.rails-version }}" --no-document
 
-      - name: Generate and test application
-        run: make test_ci
+      - name: Generate application from template
+        run: make test_output
+
+      - name: Verify generated application bundle
+        run: make test_bundle
+
+      - name: Test generated application
+        run: ruby test/generated_app_test.rb

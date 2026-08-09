@@ -7,7 +7,7 @@ class TemplateOutputTest < Minitest::Test
     gemfile = read("Gemfile")
 
     %w[
-      annotate
+      annotaterb
       devise
       haml-rails
       immosquare-cookies
@@ -39,6 +39,7 @@ class TemplateOutputTest < Minitest::Test
     development = read("config/environments/development.rb")
 
     assert_includes development, "config.action_mailer.delivery_method = :smtp"
+    assert_includes development, 'config.action_mailer.preview_paths = [Rails.root.join("spec/mailers/previews")]'
     assert_includes development, 'config.action_mailer.preview_path = Rails.root.join("spec/mailers/previews")'
     assert_includes read("config/initializers/mailkick.rb"), "Mailkick.headers = true"
     assert_file "app/views/layouts/mailer.html.haml"
