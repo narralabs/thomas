@@ -91,13 +91,13 @@ create_file "app/components/application_component.rb", <<~RUBY
   end
 RUBY
 
-create_file "app/helpers/application_helper.rb", <<~RUBY
-  module ApplicationHelper
+insert_into_file "app/helpers/application_helper.rb", after: "module ApplicationHelper\n" do
+  <<~RUBY.indent(2)
     def title_tag
       content_for(:title).presence || Rails.application.class.module_parent_name.titleize
     end
-  end
 RUBY
+end
 
 after_bundle do
   # Convert existing erb files to haml
