@@ -91,6 +91,14 @@ create_file "app/components/application_component.rb", <<~RUBY
   end
 RUBY
 
+create_file "app/helpers/application_helper.rb", <<~RUBY
+  module ApplicationHelper
+    def title_tag
+      content_for(:title).presence || Rails.application.class.module_parent_name.titleize
+    end
+  end
+RUBY
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
@@ -118,6 +126,8 @@ CODE
   insert_into_file "app/views/layouts/application.html.haml", after: "  %body\n" do
     "    = render 'shared/flash'\n    = render \"immosquare-cookies/consent_banner\"\n"
   end
+
+  gsub_file "app/views/layouts/application.html.haml", /^\s*%title.*$/, "    %title= title_tag"
 
   # Run the simple_form generator
   run "rails generate simple_form:install"
