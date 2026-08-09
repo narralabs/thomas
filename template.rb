@@ -32,6 +32,29 @@ gem_group :development, :test do
   gem "timecop", comment: "Use Timecop for time testing"
 end
 
+create_file ".rubocop.yml", <<~YAML
+  plugins:
+    - rubocop-rails
+
+  Style/StringLiterals:
+    EnforcedStyle: double_quotes
+    SupportedStyles:
+      - single_quotes
+      - double_quotes
+
+  Style/Documentation:
+    Enabled: false
+
+  Style/FrozenStringLiteralComment:
+    Enabled: false
+
+  Style/EmptyMethod:
+    Enabled: false
+
+  Metrics/MethodLength:
+    Max: 20
+YAML
+
 gem_group :test do
   gem 'shoulda-matchers', '~> 6.0', comment: "Use Shoulda Matchers for test matchers"
 end
