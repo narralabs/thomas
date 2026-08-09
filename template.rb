@@ -14,6 +14,7 @@ gem "rack-timeout", comment: "Use Rack Timeout to timeout requests"
 gem "high_voltage", comment: "Use High Voltage for static pages"
 
 gem "title", comment: "Use Title for dynamic page titles"
+gem "view_component", "~> 3.25", comment: "Organize reusable, testable view components"
 
 gem "sidekiq", comment: "Use Sidekiq for background jobs"
 
@@ -24,6 +25,7 @@ gem "asset_sync", comment: "To upload assets to S3 after precompiling assets"
 gem "fog-aws", comment: "To use AWS with asset_sync"
 
 gem_group :development, :test do
+  gem "annotate", "~> 3.2", require: false, comment: "Document database columns in models"
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
   gem "timecop", comment: "Use Timecop for time testing"
@@ -60,6 +62,11 @@ environment <<~RUBY, env: "development"
   config.action_mailer.preview_path = Rails.root.join("spec/mailers/previews")
 RUBY
 
+create_file "app/components/application_component.rb", <<~RUBY
+  class ApplicationComponent < ViewComponent::Base
+  end
+RUBY
+
 after_bundle do
   # Convert existing erb files to haml
   run "HAML_RAILS_DELETE_ERB=true rails haml:erb2haml"
@@ -90,6 +97,7 @@ CODE
 
   # Run the simple_form generator
   run "rails generate simple_form:install"
+  run "rails generate annotate:install"
 
   run "rails generate mailkick:install"
   create_file "config/initializers/mailkick.rb", <<~RUBY

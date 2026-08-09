@@ -41,6 +41,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [Rubocop](https://github.com/rubocop/rubocop) for static code analysis
 - [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 - [Title](https://github.com/calebhearth/title) for storing titles in translations
+- [ViewComponent](https://github.com/ViewComponent/view_component) for reusable, testable view components
 
 ### Testing Gems
 
@@ -48,6 +49,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) for fixtures
 - [Timecop](https://github.com/travisjeffery/timecop) for time testing
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for one-line matchers
+- [Annotate](https://github.com/ctran/annotate_models) for model schema comments
 
 ### Security Gems
 
