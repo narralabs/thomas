@@ -33,5 +33,8 @@ jobs:
           git config --global user.name "Thomas CI"
           git config --global user.email "ci@narralabs.com"
 
+      - name: Install Rails generator
+        run: gem install rails --version "~> 7.0.10" --no-document
+
       - name: Generate and test application
         run: make test_ci
