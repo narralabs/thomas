@@ -7,7 +7,7 @@ class TemplateOutputTest < Minitest::Test
     gemfile = read("Gemfile")
 
     %w[
-      annotate
+      annotaterb
       devise
       haml-rails
       immosquare-cookies
