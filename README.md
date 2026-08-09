@@ -32,14 +32,17 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 
 - [Awesome Print](https://github.com/awesome-print/awesome_print) for beautiful puts statements
 - [Devise](https://github.com/heartcombo/devise) for authentication
+- [Immosquare Cookies](https://github.com/immosquare/immosquare-cookies) for GDPR cookie consent
 - [Haml](https://github.com/haml/haml-rails) for beautiful HTML markups
 - [Simple Form](https://github.com/heartcombo/simple_form) for easier forms
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
 - [Sidekiq](https://github.com/sidekiq/sidekiq) for processing background jobs
+- [Mailkick](https://github.com/ankane/mailkick) for subscriptions and one-click email unsubscribe
 - [Rack Timeout](https://github.com/zombocom/rack-timeout) to abort requests that are taking too long
 - [Rubocop](https://github.com/rubocop/rubocop) for static code analysis
 - [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 - [Title](https://github.com/calebhearth/title) for storing titles in translations
+- [ViewComponent](https://github.com/ViewComponent/view_component) for reusable, testable view components
 
 ### Testing Gems
 
@@ -47,6 +50,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) for fixtures
 - [Timecop](https://github.com/travisjeffery/timecop) for time testing
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for one-line matchers
+- [Annotate](https://github.com/ctran/annotate_models) for model schema comments
 
 ### Security Gems
 
@@ -215,3 +219,7 @@ To develop and contribute to the project:
 3. [ADD NEW GEMS OR CONFIG HERE]
 4. Run the makefile which creates the app named "blog" in the current dir: `make`
 5. Check the output logs and inspect the `blog` app to see if the files and config are generated correctly
+6. Run `make test_output` to regenerate the app and verify the template defaults.
+
+Generated applications include Mailcatcher for local email previews. Start it with
+`docker compose up mailcatcher`, then open `http://localhost:1080`.
