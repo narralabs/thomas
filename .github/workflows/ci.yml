@@ -44,5 +44,11 @@ jobs:
       - name: Install Rails generator
         run: gem install rails --version "${{ matrix.rails-version }}" --no-document
 
-      - name: Generate and test application
-        run: make test_ci
+      - name: Generate application from template
+        run: make test_output
+
+      - name: Verify generated application bundle
+        run: make test_bundle
+
+      - name: Test generated application
+        run: ruby test/generated_app_test.rb
