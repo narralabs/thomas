@@ -50,7 +50,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 - [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) for fixtures
 - [Timecop](https://github.com/travisjeffery/timecop) for time testing
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for one-line matchers
-- [Annotate](https://github.com/ctran/annotate_models) for model schema comments
+- [AnnotateRb](https://github.com/drwl/annotaterb) for model schema comments
 
 ### Security Gems
 

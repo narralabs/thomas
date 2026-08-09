@@ -26,7 +26,7 @@ gem "asset_sync", comment: "To upload assets to S3 after precompiling assets"
 gem "fog-aws", comment: "To use AWS with asset_sync"
 
 gem_group :development, :test do
-  gem "annotate", "~> 3.2", require: false, comment: "Document database columns in models"
+  gem "annotaterb", "~> 4.24", require: false, comment: "Document database columns in models"
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
   gem "timecop", comment: "Use Timecop for time testing"
@@ -131,7 +131,7 @@ CODE
 
   # Run the simple_form generator
   run "rails generate simple_form:install"
-  run "rails generate annotate:install"
+  run "rails generate annotate_rb:install"
 
   run "rails generate mailkick:install"
   create_file "config/initializers/mailkick.rb", <<~RUBY
@@ -221,7 +221,7 @@ end
 STR
 
   # Add sidekiq production config
-  gsub_file "config/environments/production.rb", /# config\.active_job\.queue_adapter\s+=\s+:resque/, "config.active_job.queue_adapter = :sidekiq"
+  environment "config.active_job.queue_adapter = :sidekiq", env: "production"
 
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"
