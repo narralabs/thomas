@@ -229,6 +229,28 @@ STR
 Rack::Timeout::Logger.disable
 CODE
 
+  # Keep load-balancer probes available without flooding production logs.
+  route 'get "/up", to: proc { [200, { "Content-Type" => "text/plain" }, ["OK"]] }'
+  create_file "app/middleware/healthcheck_silencer.rb", <<~RUBY
+    class HealthcheckSilencer
+      def initialize(app)
+        @app = app
+      end
+
+      def call(env)
+        return @app.call(env) unless env["PATH_INFO"] == "/up"
+
+        Rails.logger.silence { @app.call(env) }
+      end
+    end
+  RUBY
+  insert_into_file "config/application.rb", after: "require_relative \"boot\"\n" do
+    "require_relative \"../app/middleware/healthcheck_silencer\"\n"
+  end
+  insert_into_file "config/application.rb", after: "class Application < Rails::Application\n" do
+    "    config.middleware.insert_before Rails::Rack::Logger, HealthcheckSilencer\n"
+  end
+
   git add: "."
   git commit: %Q{ -m 'Initial commit' }
 end
