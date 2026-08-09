@@ -127,6 +127,52 @@ CODE
     = yield
   HAML
 
+  # Install application authentication and a protected admin dashboard.
+  run "rails generate devise:install"
+  run "rails generate devise Admin"
+
+  route <<~RUBY
+    namespace :admin do
+      root "dashboard#index"
+    end
+  RUBY
+
+  create_file "app/controllers/admin/base_controller.rb", <<~RUBY
+    class Admin::BaseController < ApplicationController
+      before_action :authenticate_admin!
+
+      layout "admin"
+    end
+  RUBY
+
+  create_file "app/controllers/admin/dashboard_controller.rb", <<~RUBY
+    class Admin::DashboardController < Admin::BaseController
+      def index
+      end
+    end
+  RUBY
+
+  create_file "app/views/layouts/admin.html.haml", <<~HAML
+    !!!
+    %html
+      %head
+        %title Admin
+        %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
+        = csrf_meta_tags
+        = csp_meta_tag
+      %body
+        %header
+          %nav
+            = link_to "Dashboard", admin_root_path
+            = button_to "Sign out", destroy_admin_session_path, method: :delete
+        %main= yield
+  HAML
+
+  create_file "app/views/admin/dashboard/index.html.haml", <<~HAML
+    %h1 Admin dashboard
+    %p Use this protected area for application administration.
+  HAML
+
   # Run the rspec generator and remove the test directory
   run "rails generate rspec:install"
   run "rm -rf test"
