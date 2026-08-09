@@ -5,3 +5,6 @@ newapp:
 
 clean:
 	rm -rf blog
+
+test_output: clean newapp
+	ruby test/template_output_test.rb

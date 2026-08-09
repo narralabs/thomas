@@ -89,7 +89,7 @@ end
 STR
 
   # Add sidekiq production config
-  gsub_file "config/environments/production.rb", /# config.active_job.queue_adapter = :resque/, "config.active_job.queue_adapter = :sidekiq"
+  gsub_file "config/environments/production.rb", /# config\.active_job\.queue_adapter\s+=\s+:resque/, "config.active_job.queue_adapter = :sidekiq"
 
   #run "bundle exec rails generate devise:install"
   #run "bundle exec generate devise User"
