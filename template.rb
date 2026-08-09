@@ -1,6 +1,7 @@
 gem "awesome_print", comment: "Use Awesome Print for better printing"
 gem "devise", comment: "Use Devise for authentication"
 gem "mailkick", "~> 1.3.1", comment: "Provide email subscriptions and one-click unsubscribe"
+gem "immosquare-cookies", "~> 2.0", comment: "Provide GDPR cookie consent controls"
 
 gem "html2haml", comment: "Use HTML2HAML to convert erb to haml"
 gem "haml-rails", "~> 2.0", comment: "Use HAML for HTML templates"
@@ -92,7 +93,7 @@ after_bundle do
 CODE
 
   insert_into_file "app/views/layouts/application.html.haml", after: "  %body\n" do
-    "    = render 'shared/flash'\n"
+    "    = render 'shared/flash'\n    = render \"immosquare-cookies/consent_banner\"\n"
   end
 
   # Run the simple_form generator

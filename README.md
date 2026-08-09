@@ -32,6 +32,7 @@ rails new blog --css tailwind -m https://raw.githubusercontent.com/narralabs/tho
 
 - [Awesome Print](https://github.com/awesome-print/awesome_print) for beautiful puts statements
 - [Devise](https://github.com/heartcombo/devise) for authentication
+- [Immosquare Cookies](https://github.com/immosquare/immosquare-cookies) for GDPR cookie consent
 - [Haml](https://github.com/haml/haml-rails) for beautiful HTML markups
 - [Simple Form](https://github.com/heartcombo/simple_form) for easier forms
 - [SitemapGenerator](https://github.com/kjvarga/sitemap_generator) for generating sitemaps
