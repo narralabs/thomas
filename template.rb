@@ -83,7 +83,11 @@ environment <<~RUBY, env: "development"
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: "127.0.0.1", port: 1025 }
-  config.action_mailer.preview_path = Rails.root.join("spec/mailers/previews")
+  if Rails::VERSION::MAJOR >= 8
+    config.action_mailer.preview_paths = [Rails.root.join("spec/mailers/previews")]
+  else
+    config.action_mailer.preview_path = Rails.root.join("spec/mailers/previews")
+  end
 RUBY
 
 create_file "app/components/application_component.rb", <<~RUBY
