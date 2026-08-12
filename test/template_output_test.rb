@@ -21,6 +21,10 @@ class TemplateOutputTest < Minitest::Test
     ].each do |gem_name|
       assert_includes gemfile, "gem \"#{gem_name}\""
     end
+
+    refute_match(/^\s*gem ["']annotate["']/, gemfile,
+      "The legacy annotate gem rejects ActiveRecord 8; use annotaterb")
+    assert_includes gemfile, 'gem "annotaterb", "~> 4.24"'
   end
 
   def test_welcome_page

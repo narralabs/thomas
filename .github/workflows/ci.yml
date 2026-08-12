@@ -1,9 +1,14 @@
 name: CI
 
 on:
+  workflow_dispatch:
+  schedule:
+    # Catch upstream Rails/RubyGems compatibility breaks even without a commit.
+    - cron: "17 9 * * 1"
   pull_request:
   push:
     branches:
+      - main
       - master
 
 jobs:
@@ -44,10 +49,7 @@ jobs:
       - name: Install Rails generator
         run: gem install rails --version "${{ matrix.rails-version }}" --no-document
 
-      - name: Generate application from template
-        run: make test_output
-
-      - name: Verify generated application bundle
+      - name: Generate application and resolve dependencies from scratch
         run: make test_bundle
 
       - name: Test generated application
