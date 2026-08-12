@@ -26,6 +26,7 @@ gem "asset_sync", comment: "To upload assets to S3 after precompiling assets"
 gem "fog-aws", comment: "To use AWS with asset_sync"
 
 gem_group :development, :test do
+  # The legacy annotate gem caps ActiveRecord below 8.0; annotaterb supports Rails 8.
   gem "annotaterb", "~> 4.24", require: false, comment: "Document database columns in models"
   gem "rspec-rails", '~> 6.1.0', comment: "Use RSpec for testing"
   gem "factory_bot_rails", comment: "Use Factory Bot for fixtures"
